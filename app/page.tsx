@@ -1,5 +1,13 @@
-export default function Home(){
-  return(
-    <div className="bg-red-500">Hello space</div>
-  )
+import HomeProperties from "@/components/HomeProperties";
+import Hero from "../components/Hero";
+import InfoBoxes from "../components/InfoBoxes";
+
+export default function Home() {
+  return (
+    <>
+      <Hero />
+      <InfoBoxes />
+      <HomeProperties/>
+    </>
+  );
 }
