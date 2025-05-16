@@ -1,44 +1,26 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 import {
   FaBed,
   FaBath,
   FaRulerCombined,
   FaMoneyBill,
   FaMapMarker,
-} from 'react-icons/fa';
+} from "react-icons/fa";
+import { PropertyType } from "@/types/PropertyType";
 
-type Property = {
-  _id: string;
-  name: string;
-  type: string;
-  images: string[];
-  beds: number;
-  baths: number;
-  square_feet: number;
-  rates: {
-    monthly?: number;
-    weekly?: number;
-    nightly?: number;
-  };
-  location: {
-    city: string;
-    state: string;
-  };
-};
-
-type PropertyCardProps = {
-  property: Property;
-};
+interface PropertyCardProps {
+  property: PropertyType;
+}
 
 const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
   const getRateDisplay = (): string | undefined => {
     const { rates } = property;
-    if (rates.monthly) {
+    if (rates?.monthly) {
       return `$${rates.monthly.toLocaleString()}/mo`;
-    } else if (rates.weekly) {
+    } else if (rates?.weekly) {
       return `$${rates.weekly.toLocaleString()}/wk`;
-    } else if (rates.nightly) {
+    } else if (rates?.nightly) {
       return `$${rates.nightly.toLocaleString()}/night`;
     }
   };
@@ -46,7 +28,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
   return (
     <div className="rounded-xl shadow-md relative">
       <Image
-        src={`/images/properties/${property?.images[0]}`}
+        src={`/images/properties/${property.images?.[0]}`}
         alt={property.name}
         width="0"
         height="0"
@@ -93,8 +75,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
           <div className="flex align-middle gap-2 mb-4 lg:mb-0">
             <FaMapMarker className="text-orange-700 mt-1" />
             <span className="text-orange-700">
-              {" "}
-              {property.location.city} {property.location.state}{" "}
+              {property.location.city} {property.location.state}
             </span>
           </div>
           <Link
