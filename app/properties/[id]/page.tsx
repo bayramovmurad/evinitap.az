@@ -5,6 +5,8 @@ import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import PropertyDetails from '@/components/PropertyDetails';
 import {PropertyType} from '@/types/PropertyType';
+import PropertyImages from '@/components/PropertyImages';
+import NotFound from "@/app/not-found";
 
 interface PropertyPageProps {
   params: {
@@ -14,8 +16,17 @@ interface PropertyPageProps {
 
 const PropertyPage = async ({ params }: PropertyPageProps) => {
   await connectDB();
+  if (!params?.id) {
+    NotFound(); 
+  }
+
   const property = await Property.findById(params.id).lean<PropertyType>();
 
+  if (!property) {
+    return (
+          <h1 className="text-xl font-bold mb-4">Property Not Found</h1>
+    );
+  }
 
   return (
     <>
@@ -37,6 +48,7 @@ const PropertyPage = async ({ params }: PropertyPageProps) => {
           </div>
         </div>
       </section>
+      <PropertyImages images={property?.images}/>
     </>
   );
 };

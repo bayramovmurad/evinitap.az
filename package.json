@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "cloudinary": "^2.6.1",
     "mongoose": "^8.14.3",
     "next": "15.3.2",
     "next-auth": "^4.24.11",
