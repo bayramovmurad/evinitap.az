@@ -4,6 +4,9 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import  AuthProvider  from "@/authProviders";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const roboto = Roboto({ subsets: ["latin"], weight: ["500"] });
 
@@ -24,6 +27,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <ToastContainer />
         </body>
       </html>
     </AuthProvider>
