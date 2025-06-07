@@ -1,2 +1,7 @@
 @import "tailwindcss";
 
+.grid-70-30 {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    gap: 1.5rem;
+ }
